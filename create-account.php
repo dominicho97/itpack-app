@@ -1,8 +1,6 @@
 <?php
 
-
-$pdo = new PDO('mysql:host=localhost;dbname=itpack;charset=utf8', 'root','' );
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include('classes/DB.php');
 
 if (isset($_POST['createaccount'])){
   $username = $_POST['username'];
