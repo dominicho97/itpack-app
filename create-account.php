@@ -12,6 +12,8 @@ if (isset($_POST['createaccount'])) {
 
             if (preg_match('/[a-zA-Z0-9_]+/', $username)){
 
+              if (strlen($password) >= 6 && strlen($password) <= 60){
+
                 DB::query('INSERT INTO users VALUES (\'\', :username, :password)', array(':username'=>$username, 
                  /*without hash: ':password'=>$password)); */
                 ':password'=>password_hash($password,PASSWORD_BCRYPT)));
@@ -21,14 +23,17 @@ if (isset($_POST['createaccount'])) {
               echo 'Invalid username';
             }
 
-          } else {
-            echo 'Invalid username!';
-          }
+      } else {
+       echo 'Invalid username!';
+        }
 
-      } else{
-        echo 'User already exists!';
-      }
+   } else{
+       echo 'User already exists!';
+     }
       
+}
+}else{
+  echo 'invalid password';
 }
 
 ?>
