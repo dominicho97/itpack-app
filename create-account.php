@@ -8,10 +8,22 @@ if (isset($_POST['createaccount'])) {
        
         if(!DB::query('SELECT username FROM users WHERE username=:username',array(':username'=>$username))){
 
-          
+          if (strlen($username) >= 3 && strlen($username) <= 32){
 
-            DB::query('INSERT INTO users VALUES (\'\', :username, :password)', array(':username'=>$username, ':password'=>$password));
-            echo "Success!";
+            if (preg_match('/[a-zA-Z0-9_]+/', $username)){
+
+                DB::query('INSERT INTO users VALUES (\'\', :username, :password)', array(':username'=>$username, 
+                 /*without hash: ':password'=>$password)); */
+                ':password'=>password_hash($password,PASSWORD_BCRYPT)));
+                echo "Success!";
+
+            } else {
+              echo 'Invalid username';
+            }
+
+          } else {
+            echo 'Invalid username!';
+          }
 
       } else{
         echo 'User already exists!';
