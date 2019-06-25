@@ -8,8 +8,10 @@ if (isset($_POST['createaccount'])) {
        
         if(!DB::query('SELECT username FROM users WHERE username=:username',array(':username'=>$username))){
 
-        DB::query('INSERT INTO users VALUES (\'\', :username, :password)', array(':username'=>$username, ':password'=>$password));
-        echo "Success!";
+          
+
+            DB::query('INSERT INTO users VALUES (\'\', :username, :password)', array(':username'=>$username, ':password'=>$password));
+            echo "Success!";
 
       } else{
         echo 'User already exists!';

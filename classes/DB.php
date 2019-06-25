@@ -12,7 +12,7 @@ class DB {
     $statement->execute($params);
 
 
-    if(explode($query, " ")[0] == 'SELECT'){
+    if(explode(" ",$query)[0] == 'SELECT'){
     $data =  $statement->fetchAll();
     return $data;
   }
