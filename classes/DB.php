@@ -7,11 +7,11 @@ class DB {
     return $pdo;
   }
 
-  public static function query($query,$params){
+  public static function query($query,$params=array()){
     $statement = self::connect()->prepare($query);
-    $statement->execute();
-    $data =  $statement->fetchAll();
-    return $data;
+    $statement->execute($params);
+   // $data =  $statement->fetchAll();
+   // return $data;
   }
 
 }
